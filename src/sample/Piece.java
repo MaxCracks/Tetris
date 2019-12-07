@@ -3,6 +3,9 @@ package sample;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Model of Piece
+ */
 public abstract class Piece {
     Rectangle a;
     Rectangle b;
@@ -11,38 +14,55 @@ public abstract class Piece {
     String name;
     Color color;
     int form;
-    public static final int GRIDSPACE = 25;
+    public static final int GRIDSPACE = 25; //This would be gotten from GameBoard
+    public static final double WIDTH = 12 * GRIDSPACE; //This would be gotten from GameBoard
 
-    public Piece() {}
+    /**
+     * Creates a Piece object
+     */
+    public Piece() {
+        a = new Rectangle(GRIDSPACE - 1, GRIDSPACE - 1);
+        b = new Rectangle(GRIDSPACE - 1, GRIDSPACE - 1);
+        c = new Rectangle(GRIDSPACE - 1, GRIDSPACE - 1);
+        d = new Rectangle(GRIDSPACE - 1, GRIDSPACE - 1);
+    }
 
     public abstract void rotate();
 
-    public void turnLeft(Rectangle r){
+    /**
+     * This function shifts a rectangle to the left by one grid space to the left
+     * @param r - The rectangle being shifted
+     */
+    public void shiftLeft(Rectangle r){
         r.setX(r.getX() - GRIDSPACE);
     }
 
-    public void turnRight(Rectangle r) {
+    /**
+     * This function shifts a rectangle to the left by one grid space to the left
+     * @param r - The rectangle being shifted
+     */
+    public void shiftRight(Rectangle r) {
         r.setX(r.getX() + GRIDSPACE);
     }
 
-    public void turnUp(Rectangle r) {
+    public void shiftUp(Rectangle r) {
         r.setY(r.getY() + GRIDSPACE);
     }
 
-    public void turnDown(Rectangle r) {
+    public void shiftDown(Rectangle r) {
         r.setY(r.getY() - GRIDSPACE);
     }
 
-    public double getPos(String name, String coord) {
+    public double getPos(String name, String coordinate) {
         switch (name){
             case "a":
-                return coord.equals("x") ? a.getX() : a.getY();
+                return coordinate.equals("x") ? a.getX() : a.getY();
             case "b":
-                return coord.equals("x") ? b.getX() : b.getY();
+                return coordinate.equals("x") ? b.getX() : b.getY();
             case "c":
-                return coord.equals("x") ? c.getX() : c.getY();
+                return coordinate.equals("x") ? c.getX() : c.getY();
             case "d":
-                return coord.equals("x") ? d.getX() : d.getY();
+                return coordinate.equals("x") ? d.getX() : d.getY();
         }
         return 0;
     }
