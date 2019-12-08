@@ -1,3 +1,4 @@
+package sample;
 import java.util.*;
 
 
@@ -7,7 +8,6 @@ public class GameBoard implements Board {
 	public int WIDTH;
 	public int HEIGHT;
 	public boolean [][] GRID;
-	public ArrayList<Piece> boardPieces;
 	private int aX;
 	private int aY;
 	private int bX;
@@ -32,7 +32,7 @@ public class GameBoard implements Board {
 		bX=0; bY=0;
 		cX=0; cY=0;
 		dX=0; dY=0;
-		boardPieces= new ArrayList<>();
+		GRIDSPACE = 25;
 	}
 	public void moveLeft(Piece p) {
 	
@@ -81,7 +81,7 @@ public class GameBoard implements Board {
 		}
 		else //throw exception here out of bounds
 		{
-			updateBoard(p);	//end of turn so updates board
+			updateBoard(p);	//end of turn so updates board 
 			return false;	//CALL .addScore(checkRows) in Tetris Runner
 		}
 	}
@@ -141,7 +141,11 @@ public class GameBoard implements Board {
 			return new LPiece();
 		}
 	}
-	public int checkRows() {
+	
+	/*
+	 * MOVE TO TETRIS CLASS
+	 
+	 public int checkRows() {
 		int clearedRows = 0;
 		for (int j=0;j<HEIGHT;j++) {
 			int colFull=0;	//resets counter every row iteration
@@ -171,10 +175,10 @@ public class GameBoard implements Board {
 	/*	else if (clearedRows!=0)
 		{
 			//throw exception here should not be possible
-		}*/
+		}
 		return 0;
 	}
-	
+	*/
 	public void updatePiece(Piece p) {
 		aX=(int)(p.getPos("a","x")/GRIDSPACE);
 		aY=(int)(p.getPos("a","y")/GRIDSPACE);
@@ -188,7 +192,7 @@ public class GameBoard implements Board {
 	
 	public void clearRow(int n) {	
 		
-		for(i=0;i<=WIDTH;i++)
+		for(int i=0;i<=WIDTH;i++)
 		{
 			GRID[n][i]=false;	//empties row
 		}
@@ -205,53 +209,6 @@ public class GameBoard implements Board {
 			GRID[0][i]=false;	//For top row to be set to zero b/c nothing above
 		}
 		
-		Piece temp;	
-		/* VISUAL PART*/
-		for (int i=0;i<boardPieces.size();i++)	//iterates through all pieces
-		{
-			temp=boardPieces.get(i);	
-			updatePiece(temp);
-			if (aX<n||bX<n||cX<n||dX<n)	//if any piece is above row that needs to be cleared
-			{
-				moveDown(temp);
-			}
-			else {
-				if (aX==n)
-				{
-					temp.setClear(a); //NEW FUNCTION TO ADD INTO ABSTRACT PIECE CLASS
-				}
-				if (bX==n)
-				{
-					temp.setClear(b); //NEW FUNCTION TO ADD INTO ABSTRACT PIECE CLASS
-				}
-				if (cX==n)
-				{
-					temp.setClear(c); //NEW FUNCTION TO ADD INTO ABSTRACT PIECE CLASS
-				}
-				if (dX==n)
-				{
-					temp.setClear(d); //NEW FUNCTION TO ADD INTO ABSTRACT PIECE CLASS
-				}
-				if (aX<n)
-				{
-					temp.modPos("a",0,1*GRIDSPACE); //OVERLOADED FUNCTION TO ADD INTO ABSTRACT PIECE CLASS
-				}
-				if (bX<n)
-				{
-					temp.modPos("b",0,1*GRIDSPACE); //OVERLOADED FUNCTION TO ADD INTO ABSTRACT PIECE CLASS
-				}
-				if (cX<n)
-				{
-					temp.modPos("c",0,1*GRIDSPACE); //OVERLOADED FUNCTION TO ADD INTO ABSTRACT PIECE CLASS
-				}
-				if (dX<n)
-				{
-					temp.modPos("d",0,1*GRIDSPACE); //OVERLOADED FUNCTION TO ADD INTO ABSTRACT PIECE CLASS
-				}
-				
-			}
-		}
-		
 	}
 	
 	public boolean updateBoard(Piece p) {	
@@ -264,7 +221,6 @@ public class GameBoard implements Board {
 			GRID[cX][cY]=true;
 			GRID[dX][dY]=true;
 			updatePiece(p);
-			boardPieces.add(p);
 			return true;
 		}
 		
