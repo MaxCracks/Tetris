@@ -46,11 +46,11 @@ public abstract class Piece {
     }
 
     public void shiftUp(Rectangle r) {
-        r.setY(r.getY() + GRIDSPACE);
+        r.setY(r.getY() - GRIDSPACE);
     }
 
     public void shiftDown(Rectangle r) {
-        r.setY(r.getY() - GRIDSPACE);
+        r.setY(r.getY() + GRIDSPACE);
     }
 
     public double getPos(String name, String coordinate) {

@@ -1,3 +1,6 @@
+package sample;
+
+import sample.Piece;
 
 public interface Board {
 	public void moveLeft(Piece p);

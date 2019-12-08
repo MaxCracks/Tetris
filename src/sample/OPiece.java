@@ -13,6 +13,10 @@ public class OPiece  extends Piece{
         c.setY(GRIDSPACE);
         d.setX(WIDTH / 2 + GRIDSPACE);
         d.setY(GRIDSPACE);
+        a.setFill(color);
+        b.setFill(color);
+        c.setFill(color);
+        d.setFill(color);
     }
     @Override
     public void rotate() {}
