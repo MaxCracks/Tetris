@@ -6,7 +6,7 @@ public class ZPiece extends Piece {
     public ZPiece(){
         super();
         name = "z";
-        color = Color.BEIGE;
+        color = Color.ORANGE;
         form = 1;
         a.setX(WIDTH / 2 - GRIDSPACE);
         b.setX(WIDTH / 2);
@@ -23,6 +23,7 @@ public class ZPiece extends Piece {
     @Override
     public void rotate() {
         form++;
+        System.out.println(form);
         if (form > 2) form = 1;
         if (form == 2){
             shiftRight(a);
@@ -32,7 +33,7 @@ public class ZPiece extends Piece {
             shiftLeft(d);
             shiftLeft(d);
         }
-        if (form == 2){
+        if (form == 1){
             shiftLeft(a);
             shiftDown(a);
             shiftDown(c);
