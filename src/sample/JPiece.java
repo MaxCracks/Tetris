@@ -2,12 +2,12 @@ package sample;
 
 import javafx.scene.paint.Color;
 
-public class TPiece extends Piece {
-    public TPiece(){
-        name = "t";
+public class JPiece extends Piece {
+    public JPiece(){
+        name = "j";
         color = Color.GREEN;
         form = 1;
-        a.setX(WIDTH / 2);
+        a.setX(WIDTH / 2 - GRIDSPACE);
         b.setX(WIDTH / 2 - GRIDSPACE);
         b.setY(GRIDSPACE);
         c.setX(WIDTH / 2);
@@ -22,16 +22,16 @@ public class TPiece extends Piece {
     @Override
     public void rotate() {
         form++;
-        if (form > 4) form = 1;
-        if (form == 2){
+        if(form > 4) form = 1;
+        if(form == 2){
             shiftRight(a);
-            shiftDown(a);
+            shiftRight(a);
             shiftUp(b);
             shiftRight(b);
             shiftDown(d);
             shiftLeft(d);
         } else if (form == 3){
-            shiftLeft(a);
+            shiftDown(a);
             shiftDown(a);
             shiftDown(b);
             shiftRight(b);
@@ -39,13 +39,13 @@ public class TPiece extends Piece {
             shiftLeft(d);
         } else if (form == 4){
             shiftLeft(a);
-            shiftUp(a);
+            shiftLeft(a);
             shiftDown(b);
             shiftLeft(b);
             shiftUp(d);
             shiftRight(d);
         } else if (form == 1){
-            shiftRight(a);
+            shiftUp(a);
             shiftUp(a);
             shiftUp(b);
             shiftLeft(b);

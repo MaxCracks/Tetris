@@ -11,14 +11,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Tetris extends Application {
+    GameBoard gameBoard = new GameBoard();
+    Piece piece;
+    Pane gridPane = new Pane();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
-        //Pane pane = new Pane();
-        Pane gridPane = new Pane();
         ZPiece zPiece = new ZPiece();
         zPiece.modPos(0, 50);
         zPiece.rotate();
@@ -26,14 +27,9 @@ public class Main extends Application {
         zPiece.rotate();
         zPiece.rotate();
         OPiece oPiece = new OPiece();
-        Piece p = new TPiece();
+        Piece p = new JPiece();
         gridPane.getChildren().addAll(p.a, p.b, p.c, p.d);
-        p.modPos(0, 25);
-        p.rotate();
-        p.rotate();
-        p.rotate();
-        p.rotate();
-        //gridPane.getChildren().addAll(oPiece.a, oPiece.b, oPiece.c, oPiece.d);
+
         primaryStage.setScene(new Scene(gridPane, 300, 275));
         primaryStage.show();
 //
