@@ -1,52 +1,72 @@
 package sample;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Tetris extends Application {
-    GameBoard gameBoard = new GameBoard();
-    Piece piece;
-    Pane gridPane = new Pane();
+    private GameBoard gameBoard = new GameBoard();
+    private Piece piece;
+    private Pane gridPane = new Pane();
+    private Scene scene = new Scene(gridPane, gameBoard.WIDTH * gameBoard.GRIDSPACE, gameBoard.HEIGHT * gameBoard.GRIDSPACE);
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        ZPiece zPiece = new ZPiece();
-        zPiece.modPos(0, 50);
-        zPiece.rotate();
-        //gridPane.getChildren().addAll(zPiece.a, zPiece.b, zPiece.c, zPiece.d);
-        zPiece.rotate();
-        zPiece.rotate();
-        OPiece oPiece = new OPiece();
-        Piece p = new JPiece();
-        gridPane.getChildren().addAll(p.a, p.b, p.c, p.d);
-
-        primaryStage.setScene(new Scene(gridPane, 300, 275));
-        primaryStage.show();
-//
-//        for(Node child : gridPane.getChildren()) {
-//            Rectangle rec = (Rectangle) child;
-//            if(rec.getY() / 25 == 3){
-//                rec.setFill(Color.WHITE);
-//            } else if (rec.getY() / 25 < 3){
-//                rec.setY(rec.getY() + 25);
-//            }
-//            System.out.println(child.toString());
-//            System.out.println(rec.getY());
-//        }
+    public void start(Stage stage) throws Exception {
+        addToUI();
+        stage.setScene(scene);
+        stage.show();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+            moveDown(piece);
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
+    private void addToUI() {
+        piece = gameBoard.makePiece();
+        gridPane.getChildren().addAll(piece.a, piece.b, piece.c, piece.d);
+        moveOnKeyPress(piece);
+    }
 
-    public static void main(String[] args) {
-        launch(args);
+    private void moveOnKeyPress(Piece p){
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                switch (keyEvent.getCode()){
+                    case RIGHT:
+                        gameBoard.moveRight(p);
+                        break;
+                    case LEFT:
+                        gameBoard.moveLeft(p);
+                        break;
+                    case UP:
+                        gameBoard.rotate(p);
+                        break;
+                    case DOWN:
+                        gameBoard.moveDown(p);
+                        break;
+                }
+            }
+        });
+    }
+
+    private void moveDown(Piece p){
+        if(!gameBoard.moveDown(p)) {
+            if(!gameBoard.updateBoard(p)){
+                System.out.println("Game over");
+                System.exit(0);
+            }
+            addToUI();
+        }
     }
 }

@@ -3,6 +3,10 @@ package sample;
 import javafx.scene.paint.Color;
 
 public class ZPiece extends Piece {
+    /**
+     * This constructor creates a ZPiece object
+     * The a, b, c and d rectangles are positioned to form a z shape
+     */
     public ZPiece(){
         super();
         name = "z";
@@ -23,8 +27,8 @@ public class ZPiece extends Piece {
     @Override
     public void rotate() {
         form++;
-        System.out.println(form);
         if (form > 2) form = 1;
+        System.out.println(form);
         if (form == 2){
             shiftRight(a);
             shiftUp(a);

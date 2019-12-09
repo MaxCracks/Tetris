@@ -22,16 +22,16 @@ public class GameBoard implements Board {
 	private int dY;
 
 	public GameBoard() {
-		GRID = new boolean [20][10];
-		for (int j = 0; j<20;j++)
+		GRID = new boolean [24][12];
+		for (int j = 0; j<24;j++)
 		{
-			for (int i=0;i<10;i++)
+			for (int i=0;i<12;i++)
 			{
 				GRID [j][i]=false;
 			}
 		}
-		WIDTH = 10;
-		HEIGHT = 20;
+		WIDTH = 12;
+		HEIGHT = 24;
 		GRIDSPACE = 25;
 		aX=0; aY=0;
 		bX=0; bY=0;
@@ -44,7 +44,7 @@ public class GameBoard implements Board {
 		if(aX-1>=0 && bX-1>=0 && cX-1>=0 && dX-1>=0) {
 
 
-			if (!GRID[aX - 1][aY] && !GRID[bX - 1][bY] && !GRID[cX - 1][cY] && !GRID[dX - 1][dY])
+			if (!GRID[aY][aX - 1] && !GRID[bY][bX-1] && !GRID[cY][cX-1] && !GRID[dY][dX-1])
 			{
 					p.modPos(-1*GRIDSPACE,0);
 					updatePiece(p);
@@ -56,10 +56,10 @@ public class GameBoard implements Board {
 		//else //throw exception here out of bounds
 	}
 	public void moveRight(Piece p) {
-		if(aX+1<=WIDTH && bX+1<=WIDTH && cX+1<=WIDTH && dX+1<=WIDTH) {
+		if(aX+1 < WIDTH && bX+1 < WIDTH && cX+1 < WIDTH && dX+1 < WIDTH) {
 
 
-			if (!GRID[aX + 1][aY] && !GRID[bX + 1][bY] && !GRID[cX + 1][cY] && !GRID[dX + 1][dY])
+			if (!GRID[aY][aX+1] && !GRID[bY][bX+1] && !GRID[cY][cX+1] && !GRID[dY][dX+1])
 			{
 				p.modPos(GRIDSPACE,0);
 				updatePiece(p);
@@ -71,22 +71,21 @@ public class GameBoard implements Board {
 	}
 
 	public boolean moveDown(Piece p) {
-		if(aY+1<=HEIGHT && bY+1<=HEIGHT && cY+1<=HEIGHT && dY+1<=HEIGHT)
+		updatePiece(p);
+		if(aY+1< HEIGHT && bY+1 < HEIGHT && cY+1 < HEIGHT && dY+1 < HEIGHT)
 		{
-			if (!GRID[aX][aY + 1] && !GRID[bX][bY + 1] && !GRID[cX][cY + 1] && !GRID[dX][dY + 1])
+			if (!GRID[aY+1][aX] && !GRID[bY+1][bX] && !GRID[cY+1][cX] && !GRID[dY+1][dX])
 			{
 				p.modPos(0, GRIDSPACE);
 				updatePiece(p);
 				return true;
 			}
 			else {	//throw exception here cannot move down
-				updateBoard(p);	//end of turn so updates board
 				return false;	//CALL .addScore(checkRows) in Tetris Runner
 			}
 		}
 		else //throw exception here out of bounds
 		{
-			updateBoard(p);	//end of turn so updates board
 			return false;	//CALL .addScore(checkRows) in Tetris Runner
 		}
 	}
@@ -123,11 +122,11 @@ public class GameBoard implements Board {
 		}
 		if (l==2)
 		{
-			return new LPiece();
+			return new JPiece();
 		}
 		if (l==3)
 		{
-			return new IPiece();
+			return new OPiece();
 		}
 		if (l==4)
 		{
@@ -143,7 +142,7 @@ public class GameBoard implements Board {
 		}
 		else	//throw exception Impossible random number generated/ generate L shape
 		{
-			return new LPiece();
+			return new TPiece();
 		}
 	}
 	public int checkRows() {
@@ -213,12 +212,12 @@ public class GameBoard implements Board {
 	public boolean updateBoard(Piece p) {
 		updatePiece(p);
 
-		if (!GRID[aX][aY] && !GRID[bX][bY] && !GRID[cX][cY] && !GRID[dX][dY])
+		if (!GRID[aY][aX] && !GRID[bY][bX] && !GRID[cY][cX] && !GRID[dY][dX])
 		{
-			GRID[aX][aY]=true;
-			GRID[bX][bY]=true;
-			GRID[cX][cY]=true;
-			GRID[dX][dY]=true;
+			GRID[aY][aX]=true;
+			GRID[bY][bX]=true;
+			GRID[cY][cX]=true;
+			GRID[dY][dX]=true;
 			updatePiece(p);
 			boardPieces.add(p);
 			return true;
