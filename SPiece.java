@@ -8,10 +8,10 @@ package application;
 
 public class SPiece extends Piece {
 
-    Rectangle a;
+    /*Rectangle a;
     Rectangle b;
     Rectangle c;
-    Rectangle d;
+    Rectangle d;*/
     Color color;
     private String name;
     public int form = 1;

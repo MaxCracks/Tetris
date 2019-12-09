@@ -8,29 +8,19 @@ import javafx.scene.shape.Rectangle;
 
 public class ZPiece extends Piece {
 
-    Rectangle a;
-    Rectangle b;
-    Rectangle c;
-    Rectangle d;
+
     Color color;
     private String name;
     public int form = 1;
 
     public IPiece(Rectangle a, Rectangle b, Rectangle c, Rectangle d)
     {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
+       super(a,b,c,d);
     }
 
     public IPiece (Rectangle a, Rectangle b, Rectangle c, Rectangle d, String name)
     {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-        this.name = name;
+        super(a,b,c,d,name);
     }
 
 
