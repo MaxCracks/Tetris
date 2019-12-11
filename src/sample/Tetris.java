@@ -1,3 +1,4 @@
+
 package sample;
 
 import javafx.animation.Animation;
@@ -23,6 +24,7 @@ public class Tetris extends Application {
     private Piece piece;
     private Pane gridPane = new Pane();
     private Scene scene = new Scene(gridPane, gameBoard.WIDTH * gameBoard.GRIDSPACE, gameBoard.HEIGHT * gameBoard.GRIDSPACE);
+    private int score=0;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -67,7 +69,7 @@ public class Tetris extends Application {
     private void moveDown(Piece p){
         if(!gameBoard.moveDown(p)) {
             if(!gameBoard.updateBoard(p)){
-                System.out.println("Game over");
+                System.out.println("Game over! Score: " + score);
                 System.exit(0);
             }
             checkRows();
@@ -76,7 +78,7 @@ public class Tetris extends Application {
     }
 
     private void checkRows() {
-        //int clearedRows = 0;
+        int clearedRows = 0;
         for (int j=0;j<gameBoard.HEIGHT;j++) {
             int colFull=0;	//resets counter every row iteration
             for (int i=0;i<gameBoard.WIDTH;i++) {
@@ -84,12 +86,12 @@ public class Tetris extends Application {
                     colFull++;
             }
             if (colFull==gameBoard.WIDTH) {
+            	clearedRows++;
                 gameBoard.clearRow(j);	//clear the row and drop above
                 clearRowsVisually(j);
-                System.out.println(j);
             }
         }
-        //return clearedRows;
+        addScore(clearedRows);
     }
 
     private void clearRowsVisually(int row){
@@ -113,4 +115,20 @@ public class Tetris extends Application {
             }
         }
     }
+    
+    public void addScore(int clearedRows) {
+		if (clearedRows==1)
+			score+=40;
+		if (clearedRows==2)
+			score+=100;
+		if (clearedRows==3)
+			score+=300;
+		if (clearedRows==4)
+			score+=1200;
+	/*	else if (clearedRows!=0)
+		{
+			//throw exception here should not be possible
+		}
+		*/
+	}
 }

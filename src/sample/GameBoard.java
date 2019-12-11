@@ -11,7 +11,6 @@ public class GameBoard implements Board {
 	public int WIDTH;
 	public int HEIGHT;
 	public boolean [][] GRID;
-	public ArrayList<Piece> boardPieces;
 	private int aX;
 	private int aY;
 	private int bX;
@@ -37,7 +36,6 @@ public class GameBoard implements Board {
 		bX=0; bY=0;
 		cX=0; cY=0;
 		dX=0; dY=0;
-		boardPieces= new ArrayList<>();
 	}
 	public void moveLeft(Piece p) {
 
@@ -93,7 +91,7 @@ public class GameBoard implements Board {
 	public void rotate(Piece p) {
 		p.rotate();
 		updatePiece(p);
-		if((aY<=HEIGHT && bY<=HEIGHT && cY<=HEIGHT && dY<=HEIGHT && aX<=WIDTH && bX<=WIDTH && cX<=WIDTH && dX<=WIDTH	// Checks if in grid
+		if((aY<HEIGHT && bY<HEIGHT && cY<HEIGHT && dY<HEIGHT && aX<WIDTH && bX<WIDTH && cX<WIDTH && dX<WIDTH	// Checks if in grid
 			&& aY>=0 && bY>=0 && cY>=0 && dY>=0 && aX>=0 && bX>=0 && cX>=0 && dX>=0)	// Checks if in grid
 			&&(!GRID[aX][aY] || !GRID[bX][bY] || !GRID[cX][cY] || !GRID[dX][dY])) //Checks if conflicting spots
 		{
@@ -114,15 +112,15 @@ public class GameBoard implements Board {
 		int l= rand.nextInt(7);
 		if (l==0)
 		{
-			return new ZPiece();
+			return new IPiece();
 		}
 		if (l==1)
 		{
-			return new ZPiece();
+			return new JPiece();
 		}
 		if (l==2)
 		{
-			return new JPiece();
+			return new LPiece();
 		}
 		if (l==3)
 		{
@@ -134,32 +132,16 @@ public class GameBoard implements Board {
 		}
 		if (l==5)
 		{
-			return new OPiece();
+			return new ZPiece();
 		}
 		if (l==6)
 		{
-			return new JPiece();
+			return new ZPiece();//USE SPiece(); when SPiece is ready
 		}
 		else	//throw exception Impossible random number generated/ generate L shape
 		{
 			return new TPiece();
 		}
-	}
-
-	public int addScore(int clearedRows) {
-		if (clearedRows==1)
-			return 40;
-		if (clearedRows==2)
-			return 100;
-		if (clearedRows==3)
-			return 300;
-		if (clearedRows==4)
-			return 1200;
-	/*	else if (clearedRows!=0)
-		{
-			//throw exception here should not be possible
-		}*/
-		return 0;
 	}
 
 	public void updatePiece(Piece p) {
@@ -175,14 +157,14 @@ public class GameBoard implements Board {
 
 	public void clearRow(int n) {
 
-		for(int i=0;i < WIDTH;i++)
+		for(int i=0;i<WIDTH;i++)
 		{
 			GRID[n][i]=false;	//empties row
 		}
 
-		for (n=n-1;n>=0;n--)
+		for (n=n-1;n>0;n--)
 		{
-			for (int i = 0;i < WIDTH;i++)
+			for (int i=0;i<WIDTH;i++)
 			{
 				GRID[n+1][i]=GRID[n][i];	//Drops rows above down by 1
 				GRID[n][i] = false;
@@ -202,7 +184,6 @@ public class GameBoard implements Board {
 			GRID[cY][cX]=true;
 			GRID[dY][dX]=true;
 			updatePiece(p);
-			boardPieces.add(p);
 			return true;
 		}
 
