@@ -1,7 +1,7 @@
-package sample.Pieces;
+package sample;
 
 import javafx.scene.paint.Color;
-import sample.Pieces.Piece;
+import sample.Piece;
 
 /**
  * Model of TPiece
@@ -24,9 +24,9 @@ public class TPiece extends Piece {
         d.setX(WIDTH / 2 + GRIDSPACE);
         d.setY(GRIDSPACE);
         a.setFill(color);
-        b.setFill(Color.BLUE);
-        c.setFill(Color.RED);
-        d.setFill(Color.BLACK);
+        b.setFill(color);
+        c.setFill(color);
+        d.setFill(color);
     }
     /**
      * This method overrides the abstract rotate method in Piece

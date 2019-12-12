@@ -1,15 +1,15 @@
-package sample.Pieces;
+package sample;
 
 import javafx.scene.paint.Color;
-import sample.Pieces.Piece;
+import sample.Piece;
 
 /**
  * Model of OPiece
  */
 public class OPiece  extends Piece {
     /**
-     * This constructor creates a OPiece object
-     * The a, b, c and d rectangles are positioned to form a o shape
+     * This constructor creates a JPiece object
+     * The a, b, c and d rectangles are positioned to form a j shape
      */
     public OPiece(){
         name = "o";

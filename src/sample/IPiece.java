@@ -1,7 +1,7 @@
-package sample.Pieces;
+package sample;
 
 import javafx.scene.paint.Color;
-import sample.Pieces.Piece;
+import sample.Piece;
 
 /**
  * Model of IPiece
@@ -14,7 +14,7 @@ public class IPiece extends Piece {
      */
     public IPiece(){
         name = "o";
-        color = Color.ORANGE;
+        color = Color.PINK;
         form = 1;
         a.setX(WIDTH / 2 - GRIDSPACE);
         b.setX(WIDTH / 2);
@@ -31,7 +31,10 @@ public class IPiece extends Piece {
     @Override
     public void rotate() {
         form++;
-        if (form > 2) form = 1;
+        if (form%2==0)
+        	form = 2;
+        else
+        	form= 1;
         if (form == 1){
             shiftDown(a);
             shiftLeft(a);

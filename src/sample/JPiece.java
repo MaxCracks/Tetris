@@ -1,7 +1,7 @@
-package sample.Pieces;
+package sample;
 
 import javafx.scene.paint.Color;
-import sample.Pieces.Piece;
+import sample.Piece;
 
 /**
  * Model of JPiece
