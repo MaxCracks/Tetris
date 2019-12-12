@@ -37,7 +37,7 @@ public class IPiece extends Piece {
         if (form == 1){
             shiftLeft(a);
             shiftDown(a);
-            shiftDown(c);
+            shiftUp(c);
             shiftRight(c);
             shiftRight(d);
             shiftRight(d);

@@ -28,7 +28,7 @@ public class LPiece extends Piece {
     public void rotate() {
         form++;
         if (form > 2) form = 1;
-        if (form == 2){
+        if (form == 1{
             shiftRight(a);
             shiftRight(a);
             shiftDown(a);
@@ -39,16 +39,38 @@ public class LPiece extends Piece {
             shiftDown(d);
             shiftDown(d);
         }
-        if (form == 1){
+        if (form == 2){
+            shiftLeft(a);
             shiftLeft(a);
             shiftDown(a);
-            shiftRught(c);
-            shiftRight(c);
+            shiftLeft(b);
+            shiftUp(b);
             shiftRight(d);
             shiftRight(d);
             shiftUp(d);
             shiftUp(d);
         }
+        if(form == 3)
+        {
+            shiftDown(a);
+            shiftDown(a);
+            shiftLeft(a);
+            shiftDown(b);
+            shiftRight(c);
+            shiftUp(d);
+
+
+        }
+        if(form == 4)
+        {
+         shiftUp(a);
+         shiftUp(a);
+         shiftRight(a);
+         shiftUp(b);
+         shiftLeft(c);
+         shiftDown(d);
+        }
+
     }
 
 
