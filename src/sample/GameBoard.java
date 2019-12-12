@@ -120,7 +120,7 @@ public class GameBoard implements Board {
 		updatePiece(p);
 		if((aY<HEIGHT && bY<HEIGHT && cY<HEIGHT && dY<HEIGHT && aX<WIDTH && bX<WIDTH && cX<WIDTH && dX<WIDTH	// Checks if in grid
 			&& aY>=0 && bY>=0 && cY>=0 && dY>=0 && aX>=0 && bX>=0 && cX>=0 && dX>=0)	// Checks if in grid
-			&&(GRID[aY][aX]==false|| GRID[bY][bX] ==false|| !GRID[cY][cX]==false || !GRID[dY][dX]==false)) //Checks if conflicting spots
+			&&(GRID[aY][aX]==false&& GRID[bY][bX] ==false&& GRID[cY][cX]==false && GRID[dY][dX]==false)) //Checks if conflicting spots
 		{
 			updatePiece(p);		//Spot valid, will save position
 		}
