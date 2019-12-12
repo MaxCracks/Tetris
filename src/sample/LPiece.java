@@ -1,4 +1,4 @@
-package sample;
+package sample.Pieces;
 
 import javafx.scene.paint.Color;
 
@@ -7,10 +7,10 @@ public class LPiece extends Piece {
     public LPiece()
     {
 
-     super();
-     name = "l";
-     color = Color.BLACK;
-     form = 1;
+        super();
+        name = "l";
+        color = Color.BLACK;
+        form = 1;
         a.setX(WIDTH / 2 + GRIDSPACE);
         b.setX(WIDTH / 2 - GRIDSPACE);
         b.setY(GRIDSPACE);
@@ -27,49 +27,43 @@ public class LPiece extends Piece {
     @Override
     public void rotate() {
         form++;
-        if (form > 2)
-        	form = 1;
-        if (form == 1){
-            shiftRight(a);
-            shiftRight(a);
+        if (form > 4)
+            form = 1;
+        if (form == 2){
+            shiftDown(a);
             shiftDown(a);
             shiftRight(b);
-            shiftDown(b);
-            shiftDown(c);
+            shiftUp(b);
             shiftLeft(d);
             shiftDown(d);
-            shiftDown(d);
         }
-        if (form == 2){
+        if (form == 3){
             shiftLeft(a);
             shiftLeft(a);
-            shiftDown(a);
-            shiftLeft(b);
-            shiftUp(b);
-            shiftRight(d);
-            shiftRight(d);
-            shiftUp(d);
-            shiftUp(d);
-        }
-        if(form == 3)
-        {
-            shiftDown(a);
-            shiftDown(a);
-            shiftLeft(a);
+            shiftRight(b);
             shiftDown(b);
-            shiftRight(c);
+            shiftLeft(d);
             shiftUp(d);
-
-
         }
         if(form == 4)
         {
-         shiftUp(a);
-         shiftUp(a);
-         shiftRight(a);
-         shiftUp(b);
-         shiftLeft(c);
-         shiftDown(d);
+            shiftUp(a);
+            shiftUp(a);
+            shiftDown(b);
+            shiftLeft(b);
+            shiftUp(d);
+            shiftRight(d);
+
+
+        }
+        if(form == 1)
+        {
+            shiftRight(a);
+            shiftRight(a);
+            shiftLeft(b);
+            shiftUp(b);
+            shiftRight(d);
+            shiftDown(d);
         }
 
     }
