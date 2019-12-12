@@ -1,88 +1,53 @@
-package application;
+package sample;
 
         import javafx.scene.paint.Color;
-        import javafx.scene.shape.Rectangle;
-
-
-
 
 public class SPiece extends Piece {
 
-    /*Rectangle a;
-    Rectangle b;
-    Rectangle c;
-    Rectangle d;*/
-    Color color;
-    private String name;
-    public int form = 1;
-
-    public SPiece(Rectangle a, Rectangle b, Rectangle c, Rectangle d)
+    public SPiece()
     {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-    }
-
-    public SPiece (Rectangle a, Rectangle b, Rectangle c, Rectangle d, String name)
-    {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-        this.name = name;
-    }
-
-
-    //setting the color of the rectangles
-
-    switch(name)
-    {
-        case "j":
-            color = Color.BLUE;
-            break;
-        case "l":
-            color = Color.BLACK;
-            break;
-        case "o":
-            color = Color.GREEN;
-            break;
-        case "s":
-            color = Color.ORANGE;
-            break;
-        case "t":
-            color = Color.RED;
-            break;
-        case "z":
-            color = Color.MAGENTA;
-            break;
-        case "i":
-            color = Color.WHITE;
-            break;
+        super();
+        name = "s";
+        color = Color.ORANGE;
+        form = 1;
+        a.setX(WIDTH / 2 + GRIDSPACE);
+        b.setX(WIDTH / 2);
+        c.setY(GRIDSPACE);
+        d.setX(WIDTH / 2 - GRIDSPACE);
+        d.setY(GRIDSPACE);
+        a.setFill(color);
+        b.setFill(color);
+        c.setFill(color);
+        d.setFill(color);
 
     }
-
-    this.a.setFill(color);
-    this.b.setFill(color);
-    this.c.setFill(color);
-    this.d.setFill(color);
-
-    //getters
-
-    public String getName()
+        @Override
+        public void rotate()
     {
-        return  name;
-    }
-
-    public void changeForm()
-    {
-        if(form !=4)
-        {
-            form++;
+        form++;
+        if (form > 2) form = 1;
+        if (form == 2){
+            shiftLeft(a);
+            shiftLeft(a);
+            shiftDown(a);
+            shiftDown(c);
+            shiftRight(c);
+            shiftLeft(d);
+            shiftLeft(d);
+            shiftUp(d);
+            shiftUp(d);
         }
-        else
-        {
-            form = 1;
+        if (form == 1){
+            shiftRight(a);
+            shiftRight(a);
+            shiftDown(a);
+            shiftUp(c);
+            shiftLeft(c);
+            shiftRight(d);
+            shiftRight(d);
+            shiftDown(d);
+            sihftDown(d);
         }
     }
-}
+
+    }

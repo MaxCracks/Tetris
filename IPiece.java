@@ -1,78 +1,48 @@
-package application;
-
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
+public class IPiece extends Piece {
 
 
-
-
-public class ZPiece extends Piece {
-
-
-    Color color;
-    private String name;
-    public int form = 1;
-
-    public IPiece(Rectangle a, Rectangle b, Rectangle c, Rectangle d)
+    public IPiece()
     {
-       super(a,b,c,d);
-    }
+        super();
+        color = Color.BEIGE;
+        name = "i";
+        form = 1;
 
-    public IPiece (Rectangle a, Rectangle b, Rectangle c, Rectangle d, String name)
-    {
-        super(a,b,c,d,name);
-    }
+        a.setX(WIDTH / 2 - GRIDSPACE);
+        b.setX(WIDTH / 2);
+        c.setX(WIDTH / 2 + GRIDSPACE);
+        d.setX(WIDTH / 2 + GRIDSPACE + GRIDSPACE);
+        a.setFill(color);
+        b.setFill(color);
+        c.setFill(color);
+        d.setFill(color);
+}
 
-
-    //setting the color of the rectangles
-
-    switch(name)
-    {
-        case "j":
-            color = Color.BLUE;
-            break;
-        case "l":
-            color = Color.BLACK;
-            break;
-        case "o":
-            color = Color.GREEN;
-            break;
-        case "s":
-            color = Color.ORANGE;
-            break;
-        case "t":
-            color = Color.RED;
-            break;
-        case "z":
-            color = Color.MAGENTA;
-            break;
-        case "i":
-            color = Color.WHITE;
-            break;
-
-    }
-
-    this.a.setFill(color);
-    this.b.setFill(color);
-    this.c.setFill(color);
-    this.d.setFill(color);
-
-    //getters
-
-    public String getName()
-    {
-        return  name;
-    }
-
-    public void changeForm()
-    {
-        if(form !=4)
-        {
-            form++;
+    @Override
+    public void rotate() {
+        form++;
+        if (form > 2) form = 1;
+        if (form == 2){
+            shiftRight(a);
+            shiftUp(a);
+            shiftDown(c);
+            shiftLeft(c);
+            shiftDown(d);
+            shiftDown(d);
+            shiftLeft(d);
+            shiftLeft(d);
         }
-        else
-        {
-            form = 1;
+        if (form == 1){
+            shiftLeft(a);
+            shiftDown(a);
+            shiftDown(c);
+            shiftRight(c);
+            shiftRight(d);
+            shiftRight(d);
+            shiftUp(d);
+            shiftUp(d);
         }
     }
 }
