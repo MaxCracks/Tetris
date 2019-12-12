@@ -8,8 +8,8 @@ import sample.Pieces.Piece;
  */
 public class OPiece  extends Piece {
     /**
-     * This constructor creates a JPiece object
-     * The a, b, c and d rectangles are positioned to form a j shape
+     * This constructor creates a OPiece object
+     * The a, b, c and d rectangles are positioned to form a o shape
      */
     public OPiece(){
         name = "o";

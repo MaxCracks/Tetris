@@ -9,7 +9,7 @@ import sample.Pieces.Piece;
 public class TPiece extends Piece {
 
     /**
-     * This constructor creates a ZPiece object
+     * This constructor creates a TPiece object
      * The a, b, c and d rectangles are positioned to form a t shape
      */
     public TPiece(){
