@@ -4,30 +4,27 @@ import javafx.scene.paint.Color;
 import sample.Pieces.Piece;
 
 /**
- * Model of ZPiece
+ * Model of IPiece
  */
-public class ZPiece extends Piece {
+public class IPiece extends Piece {
+
     /**
-     * This constructor creates a ZPiece object
-     * The a, b, c and d rectangles are positioned to form a z shape
+     * This constructor creates a IPiece object
+     * The a, b, c and d rectangles are positioned to form a i shape
      */
-    public ZPiece(){
-        super();
-        name = "z";
+    public IPiece(){
+        name = "o";
         color = Color.ORANGE;
         form = 1;
         a.setX(WIDTH / 2 - GRIDSPACE);
         b.setX(WIDTH / 2);
-        c.setX(WIDTH / 2);
-        c.setY(GRIDSPACE);
-        d.setX(WIDTH / 2 + GRIDSPACE);
-        d.setY(GRIDSPACE);
+        c.setX(WIDTH / 2 + GRIDSPACE);
+        d.setX(WIDTH / 2 + GRIDSPACE + GRIDSPACE);
         a.setFill(color);
         b.setFill(color);
         c.setFill(color);
         d.setFill(color);
     }
-
     /**
      * This method overrides the abstract rotate method in Piece
      */
@@ -35,22 +32,25 @@ public class ZPiece extends Piece {
     public void rotate() {
         form++;
         if (form > 2) form = 1;
-        System.out.println(form);
-        if (form == 2){
-            shiftRight(a);
-            shiftUp(a);
-            shiftLeft(c);
-            shiftUp(c);
-            shiftLeft(d);
-            shiftLeft(d);
-        }
         if (form == 1){
-            shiftLeft(a);
             shiftDown(a);
-            shiftDown(c);
+            shiftLeft(a);
             shiftRight(c);
+            shiftUp(c);
             shiftRight(d);
             shiftRight(d);
+            shiftUp(d);
+            shiftUp(d);
+        }
+        if(form == 2){
+            shiftUp(a);
+            shiftRight(a);
+            shiftLeft(c);
+            shiftDown(c);
+            shiftLeft(d);
+            shiftLeft(d);
+            shiftDown(d);
+            shiftDown(d);
         }
     }
 }
