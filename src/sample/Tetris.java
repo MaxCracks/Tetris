@@ -13,7 +13,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import sample.Pieces.Piece;
+import sample.Piece;
 
 import java.util.ArrayList;
 
@@ -103,7 +103,10 @@ public class Tetris extends Application {
         if(!gameBoard.moveDown(p)) {
             if(!gameBoard.updateBoard(p)){
                 System.out.println("Game over! Score: " + score);
-                System.exit(0);
+                score=0;
+                gameBoard=new GameBoard();
+                for (int i=0; i<gameBoard.HEIGHT;i++)
+                	clearRowsVisually(i);
             }
             checkRows();
             addToUI();
