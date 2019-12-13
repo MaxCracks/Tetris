@@ -1,9 +1,8 @@
-package sample;
+package sample.Pieces;
 
-        import javafx.scene.paint.Color;
+import javafx.scene.paint.Color;
 
 public class SPiece extends Piece {
-
     public SPiece()
     {
         super();
@@ -12,6 +11,7 @@ public class SPiece extends Piece {
         form = 1;
         a.setX(WIDTH / 2 + GRIDSPACE);
         b.setX(WIDTH / 2);
+        c.setX(WIDTH / 2);
         c.setY(GRIDSPACE);
         d.setX(WIDTH / 2 - GRIDSPACE);
         d.setY(GRIDSPACE);
@@ -21,33 +21,27 @@ public class SPiece extends Piece {
         d.setFill(color);
 
     }
-        @Override
-        public void rotate()
+    @Override
+    public void rotate()
     {
         form++;
         if (form > 2) form = 1;
         if (form == 2){
-            shiftLeft(a);
-            shiftLeft(a);
             shiftDown(a);
-            shiftDown(c);
-            shiftRight(c);
-            shiftLeft(d);
-            shiftLeft(d);
+            shiftDown(a);
+            shiftRight(b);
+            shiftDown(b);
             shiftUp(d);
-            shiftUp(d);
+            shiftRight(d);
         }
         if (form == 1){
-            shiftRight(a);
-            shiftRight(a);
-            shiftDown(a);
-            shiftUp(c);
-            shiftLeft(c);
-            shiftRight(d);
-            shiftRight(d);
+            shiftUp(a);
+            shiftUp(a);
+            shiftLeft(b);
+            shiftUp(b);
             shiftDown(d);
-            shiftDown(d);
+            shiftLeft(d);
         }
     }
 
-    }
+}
