@@ -1,7 +1,11 @@
 package sample;
 
 import javafx.scene.paint.Color;
+import sample.Piece;
 
+/**
+ * Model of ZPiece
+ */
 public class ZPiece extends Piece {
     /**
      * This constructor creates a ZPiece object
@@ -10,7 +14,7 @@ public class ZPiece extends Piece {
     public ZPiece(){
         super();
         name = "z";
-        color = Color.ORANGE;
+        color = Color.VIOLET;
         form = 1;
         a.setX(WIDTH / 2 - GRIDSPACE);
         b.setX(WIDTH / 2);
@@ -24,10 +28,16 @@ public class ZPiece extends Piece {
         d.setFill(color);
     }
 
+    /**
+     * This method overrides the abstract rotate method in Piece
+     */
     @Override
     public void rotate() {
         form++;
-        if (form > 2) form = 1;
+        if (form%2==0)
+        	form = 2;
+        else
+        	form= 1;
         System.out.println(form);
         if (form == 2){
             shiftRight(a);

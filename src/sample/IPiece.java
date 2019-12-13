@@ -1,11 +1,20 @@
 package sample;
 
 import javafx.scene.paint.Color;
+import sample.Piece;
 
+/**
+ * Model of IPiece
+ */
 public class IPiece extends Piece {
+
+    /**
+     * This constructor creates a IPiece object
+     * The a, b, c and d rectangles are positioned to form a i shape
+     */
     public IPiece(){
         name = "o";
-        color = Color.ORANGE;
+        color = Color.PINK;
         form = 1;
         a.setX(WIDTH / 2 - GRIDSPACE);
         b.setX(WIDTH / 2);
@@ -16,10 +25,16 @@ public class IPiece extends Piece {
         c.setFill(color);
         d.setFill(color);
     }
+    /**
+     * This method overrides the abstract rotate method in Piece
+     */
     @Override
     public void rotate() {
         form++;
-        if (form > 2) form = 1;
+        if (form%2==0)
+        	form = 2;
+        else
+        	form= 1;
         if (form == 1){
             shiftDown(a);
             shiftLeft(a);

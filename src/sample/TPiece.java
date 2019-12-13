@@ -1,8 +1,17 @@
 package sample;
 
 import javafx.scene.paint.Color;
+import sample.Piece;
 
+/**
+ * Model of TPiece
+ */
 public class TPiece extends Piece {
+
+    /**
+     * This constructor creates a TPiece object
+     * The a, b, c and d rectangles are positioned to form a t shape
+     */
     public TPiece(){
         name = "t";
         color = Color.GREEN;
@@ -15,10 +24,13 @@ public class TPiece extends Piece {
         d.setX(WIDTH / 2 + GRIDSPACE);
         d.setY(GRIDSPACE);
         a.setFill(color);
-        b.setFill(Color.BLUE);
-        c.setFill(Color.RED);
-        d.setFill(Color.BLACK);
+        b.setFill(color);
+        c.setFill(color);
+        d.setFill(color);
     }
+    /**
+     * This method overrides the abstract rotate method in Piece
+     */
     @Override
     public void rotate() {
         form++;
